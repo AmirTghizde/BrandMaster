@@ -31,6 +31,20 @@ public class UserRepo {
             System.out.println("-Failed to register");
         }
     }
+
+    public void delete(int id) throws SQLException {
+        String query="delete from users where id=?";
+        PreparedStatement preparedStatement = connection.prepareStatement(query);
+        preparedStatement.setInt(1,id);
+        int result=preparedStatement.executeUpdate();
+
+        if (result>0){
+            System.out.println("-Successfully deleted the row");
+        }else System.out.println("!Deletion failed ");
+
+
+    }
+
     public boolean isUsernameExists(String username) throws SQLException {
         String query="select username from users where username = ?";
         PreparedStatement preparedStatement = connection.prepareStatement(query);

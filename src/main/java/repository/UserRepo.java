@@ -36,6 +36,7 @@ public class UserRepo {
     }
 
     public void editUsername(String currentUsername, String newUsername) throws SQLException {
+        //Makes the user to edit their username easier by getting the old and new username than getting the userID.
         int id = findIdByUsername(currentUsername);
         if (id != -1) {
             String query = "update users set username=? where id=?";
@@ -68,6 +69,7 @@ public class UserRepo {
     }
 
     public void delete(String username) throws SQLException {
+        //getting the username as a delete parameter felt more real
         int id = findIdByUsername(username);
         if (id != -1) {
             String query = "delete from users where id=?";

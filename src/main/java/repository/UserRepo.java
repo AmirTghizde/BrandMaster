@@ -46,22 +46,42 @@ public class UserRepo {
             if (result > 0) {
                 System.out.println("+Successfully changed username");
             } else System.out.println("!Failed to change username");
-        }else {
+        } else {
             System.out.println("!Failed to find the username");
         }
-
-
     }
 
-    public void delete(int id) throws SQLException {
-        String query = "delete from users where id=?";
-        PreparedStatement preparedStatement = connection.prepareStatement(query);
-        preparedStatement.setInt(1, id);
-        int result = preparedStatement.executeUpdate();
+    public void editEmail(String currentEmail, String newEmail) throws SQLException {
+        int id = findIdByEmail(currentEmail);
+        if (id != -1) {
+            String query = "update users set email=? where id=?";
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, newEmail);
+            preparedStatement.setInt(2, id);
+            int result = preparedStatement.executeUpdate();
+            if (result > 0) {
+                System.out.println("+Successfully changed email");
+            } else System.out.println("!Failed to change email");
+        } else {
+            System.out.println("!Failed to find the email");
+        }
+    }
 
-        if (result > 0) {
-            System.out.println("-Successfully deleted the row");
-        } else System.out.println("!Deletion failed ");
+    public void delete(String username) throws SQLException {
+        int id = findIdByUsername(username);
+        if (id != -1) {
+            String query = "delete from users where id=?";
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1, id);
+            int result = preparedStatement.executeUpdate();
+
+            if (result > 0) {
+                System.out.println("-Successfully deleted the row");
+            } else System.out.println("!Deletion failed ");
+        } else {
+            System.out.println("!Username not found");
+        }
+
     }
 
     public boolean isUsernameExists(String username) throws SQLException {
@@ -88,6 +108,18 @@ public class UserRepo {
         String query = "select id from users where username=?";
         PreparedStatement preparedStatement = connection.prepareStatement(query);
         preparedStatement.setString(1, username);
+        ResultSet resultSet = preparedStatement.executeQuery();
+
+        if (resultSet.next()) {
+            return resultSet.getInt("id");
+        }
+        return -1;
+    }
+
+    public int findIdByEmail(String email) throws SQLException {
+        String query = "select id from users where email=?";
+        PreparedStatement preparedStatement = connection.prepareStatement(query);
+        preparedStatement.setString(1, email);
         ResultSet resultSet = preparedStatement.executeQuery();
 
         if (resultSet.next()) {

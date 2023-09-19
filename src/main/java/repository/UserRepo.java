@@ -31,4 +31,26 @@ public class UserRepo {
             System.out.println("-Failed to register");
         }
     }
+    public boolean isUsernameExists(String username) throws SQLException {
+        String query="select username from users where username = ?";
+        PreparedStatement preparedStatement = connection.prepareStatement(query);
+        preparedStatement.setString(1,username);
+        ResultSet resultSet = preparedStatement.executeQuery();
+
+        if (resultSet.next()){
+            return true;
+        }
+        else return false;
+    }
+    public boolean isEmailExists(String email) throws SQLException {
+        String query="select email from users where email = ?";
+        PreparedStatement preparedStatement = connection.prepareStatement(query);
+        preparedStatement.setString(1,email);
+        ResultSet resultSet = preparedStatement.executeQuery();
+
+        if (resultSet.next()){
+            return true;
+        }
+        else return false;
+    }
 }

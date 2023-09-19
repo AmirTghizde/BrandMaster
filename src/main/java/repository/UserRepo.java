@@ -37,10 +37,8 @@ public class UserRepo {
         preparedStatement.setString(1,username);
         ResultSet resultSet = preparedStatement.executeQuery();
 
-        if (resultSet.next()){
-            return true;
-        }
-        else return false;
+        //Simplified version of return true or false
+        return resultSet.next();
     }
     public boolean isEmailExists(String email) throws SQLException {
         String query="select email from users where email = ?";
@@ -48,9 +46,7 @@ public class UserRepo {
         preparedStatement.setString(1,email);
         ResultSet resultSet = preparedStatement.executeQuery();
 
-        if (resultSet.next()){
-            return true;
-        }
-        else return false;
+        //Simplified version of return true or false
+        return resultSet.next();
     }
 }

@@ -46,3 +46,8 @@ CREATE TABLE IF NOT EXISTS shareholder_brand
     primary key (shareholder_id, brand_id)
 );
 
+Alter sequence brand_id_seq restart with 1;
+Alter sequence users_id_seq restart with 1;
+Alter sequence product_id_seq restart with 1;
+Alter sequence category_id_seq restart with 1;
+Alter sequence shareholder_id_seq restart with 1;

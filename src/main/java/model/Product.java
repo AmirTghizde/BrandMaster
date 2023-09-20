@@ -6,6 +6,8 @@ public class Product {
     private Integer id;
     private String name;
     private Data createDate;
+    private Category category;
+    private Brand brand;
 
     public Product(Integer id, String name, Data createDate) {
         this(name, createDate);

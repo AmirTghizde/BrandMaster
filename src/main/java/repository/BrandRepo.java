@@ -31,6 +31,48 @@ public class BrandRepo {
             System.out.println("!Failed");
         }
     }
+    public void editName(int id,String newName) throws SQLException {
+        String query="update brand set name=? where id=?";
+        PreparedStatement preparedStatement=connection.prepareStatement(query);
+        preparedStatement.setString(1,newName);
+        preparedStatement.setInt(2,id);
+        int result=preparedStatement.executeUpdate();
+        if (result>0){
+            System.out.println("+Successfully changed name");
+        }else System.out.println("!failed to change name");
+    }
+    public void editWebsite(int id,String newWebsite) throws SQLException {
+        String query="update brand set website=? where id=?";
+        PreparedStatement preparedStatement=connection.prepareStatement(query);
+        preparedStatement.setString(1,newWebsite);
+        preparedStatement.setInt(2,id);
+        int result=preparedStatement.executeUpdate();
+        if (result>0){
+            System.out.println("+Successfully changed website");
+        }else System.out.println("!Failed to change website");
+    }
+    public void editDescription(int id,String newDescription) throws SQLException {
+        String query="update brand set description=? where id=?";
+        PreparedStatement preparedStatement=connection.prepareStatement(query);
+        preparedStatement.setString(1,newDescription);
+        preparedStatement.setInt(2,id);
+        int result=preparedStatement.executeUpdate();
+        if (result>0){
+            System.out.println("+Successfully changed description");
+        }else System.out.println("!Failed to change description");
+    }
+    public void delete(int id) throws SQLException {
+        String query="delete from brand where id=?";
+        PreparedStatement preparedStatement=connection.prepareStatement(query);
+        preparedStatement.setInt(1,id);
+        int result=preparedStatement.executeUpdate();
+
+        if (result>0){
+            System.out.println("-Successfully deleted");
+        }else {
+            System.out.println("!Failed to delete");
+        }
+    }
 
     public boolean isNameExists(String name) throws SQLException {
         String query="select name from brand where name=?";

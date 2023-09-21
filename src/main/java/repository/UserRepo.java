@@ -34,6 +34,16 @@ public class UserRepo {
             System.out.println("!Failed to register");
         }
     }
+    public void editName(int id,String name) throws SQLException {
+        String query = "update users set name=? where id=?";
+        PreparedStatement preparedStatement = connection.prepareStatement(query);
+        preparedStatement.setString(1, name);
+        preparedStatement.setInt(2, id);
+        int result = preparedStatement.executeUpdate();
+        if (result > 0) {
+            System.out.println("+Successfully changed name");
+        } else System.out.println("!Failed to change name");
+    }
 
     public void editUsername(String currentUsername, String newUsername) throws SQLException {
         //Makes the user to edit their username easier by getting the old and new username than getting the userID.
@@ -66,6 +76,16 @@ public class UserRepo {
         } else {
             System.out.println("!Failed to find the email");
         }
+    }
+    public void editPassword(int id,String password) throws SQLException {
+        String query = "update users set password=? where id=?";
+        PreparedStatement preparedStatement = connection.prepareStatement(query);
+        preparedStatement.setString(1, password);
+        preparedStatement.setInt(2, id);
+        int result = preparedStatement.executeUpdate();
+        if (result > 0) {
+            System.out.println("+Successfully changed password");
+        } else System.out.println("!Failed to change password");
     }
 
     public void delete(String username) throws SQLException {

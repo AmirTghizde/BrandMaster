@@ -23,16 +23,12 @@ public class UserRepo {
         int result = preparedStatement.executeUpdate();
         ResultSet resultSet = preparedStatement.getGeneratedKeys();
 
-        if (result > 0) {
-            System.out.println("+Successfully registered");
+        printResult(result);
             if (resultSet.next()) {
                 int autoIncrementValue = resultSet.getInt(1);
                 user.setId(autoIncrementValue);
                 System.out.println("Your id is: [ " + user.getId() + " ]");
             }
-        } else {
-            System.out.println("!Failed to register");
-        }
     }
     public void editName(int id,String name) throws SQLException {
         String query = "update users set name=? where id=?";
@@ -40,9 +36,8 @@ public class UserRepo {
         preparedStatement.setString(1, name);
         preparedStatement.setInt(2, id);
         int result = preparedStatement.executeUpdate();
-        if (result > 0) {
-            System.out.println("+Successfully changed name");
-        } else System.out.println("!Failed to change name");
+
+        printResult(result);
     }
 
     public void editUsername(String currentUsername, String newUsername) throws SQLException {
@@ -54,9 +49,8 @@ public class UserRepo {
             preparedStatement.setString(1, newUsername);
             preparedStatement.setInt(2, id);
             int result = preparedStatement.executeUpdate();
-            if (result > 0) {
-                System.out.println("+Successfully changed username");
-            } else System.out.println("!Failed to change username");
+
+            printResult(result);
         } else {
             System.out.println("!Failed to find the username");
         }
@@ -70,9 +64,8 @@ public class UserRepo {
             preparedStatement.setString(1, newEmail);
             preparedStatement.setInt(2, id);
             int result = preparedStatement.executeUpdate();
-            if (result > 0) {
-                System.out.println("+Successfully changed email");
-            } else System.out.println("!Failed to change email");
+
+            printResult(result);
         } else {
             System.out.println("!Failed to find the email");
         }
@@ -83,9 +76,8 @@ public class UserRepo {
         preparedStatement.setString(1, password);
         preparedStatement.setInt(2, id);
         int result = preparedStatement.executeUpdate();
-        if (result > 0) {
-            System.out.println("+Successfully changed password");
-        } else System.out.println("!Failed to change password");
+
+        printResult(result);
     }
 
     public void delete(String username) throws SQLException {
@@ -97,9 +89,7 @@ public class UserRepo {
             preparedStatement.setInt(1, id);
             int result = preparedStatement.executeUpdate();
 
-            if (result > 0) {
-                System.out.println("-Successfully deleted the row");
-            } else System.out.println("!Deletion failed ");
+            printResult(result);
         } else {
             System.out.println("!Username not found");
         }
@@ -148,5 +138,10 @@ public class UserRepo {
             return resultSet.getInt("id");
         }
         return -1;
+    }
+    public void printResult(int result) {
+        if (result > 0) {
+            System.out.println("+Successful");
+        } else System.out.println("!Failed");
     }
 }

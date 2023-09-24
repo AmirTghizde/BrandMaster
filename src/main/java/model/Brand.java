@@ -5,6 +5,7 @@ public class Brand {
     private String name;
     private String website;
     private String description;
+    private Shareholder[] shareholders;
     private Product[] products;
 
     public Brand(Integer id, String name, String website, String description) {

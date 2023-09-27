@@ -53,6 +53,9 @@ public class CategoryService {
         int id=sc.nextInt();
         categoryRepo.delete(id);
     }
+    public Category load(int id) throws SQLException {
+        return categoryRepo.load(id);
+    }
     public void show() throws SQLException {
         System.out.println("\t\t***Categories**");
         categoryRepo.showCategory();

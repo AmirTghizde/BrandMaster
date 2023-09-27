@@ -61,4 +61,12 @@ public class Brand {
     public void setProducts(Product[] products) {
         this.products = products;
     }
+
+    public Shareholder[] getShareholders() {
+        return shareholders;
+    }
+
+    public void setShareholders(Shareholder[] shareholders) {
+        this.shareholders = shareholders;
+    }
 }

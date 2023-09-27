@@ -60,7 +60,7 @@ public class BrandRepo {
         printResult(result);
     }
 
-    //TODO add a delete method so when a brand is deleted the products also get deleted
+
     public void delete(int id) throws SQLException {
         String query = "delete from brand where id=?";
         PreparedStatement preparedStatement = connection.prepareStatement(query);

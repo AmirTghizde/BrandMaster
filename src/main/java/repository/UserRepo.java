@@ -13,6 +13,23 @@ public class UserRepo {
 
     }
 
+
+    public User login(String username) throws SQLException {
+        String query="select * from users where username=?";
+        PreparedStatement preparedStatement=connection.prepareStatement(query);
+        preparedStatement.setString(1,username);
+        ResultSet resultSet=preparedStatement.executeQuery();
+        if (resultSet.next()){
+            return new User(
+                    resultSet.getInt("id"),
+                    resultSet.getString("name"),
+                    resultSet.getString("username"),
+                    resultSet.getString("email"),
+                    resultSet.getString("password")
+            );
+        }
+        return null;
+    }
     public void save(User user) throws SQLException {
         String query = "INSERT INTO users(name, username, email, password) values (?,?,?,?)";
         PreparedStatement preparedStatement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
@@ -27,7 +44,6 @@ public class UserRepo {
             if (resultSet.next()) {
                 int autoIncrementValue = resultSet.getInt(1);
                 user.setId(autoIncrementValue);
-                System.out.println("Your id is: [ " + user.getId() + " ]");
             }
     }
     public void editName(int id,String name) throws SQLException {

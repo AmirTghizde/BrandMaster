@@ -89,8 +89,23 @@ public class BrandRepo {
             String name = (resultSet.getString("name"));
             String website = (resultSet.getString("website"));
             String description = (resultSet.getString("description"));
-            System.out.println("\t"+id+".\t\t"+name+"\t\t"+website+"\t\t"+description );
+            System.out.println("\t"+id+".\t"+name+"\t"+website+"\t"+description );
         }
+    }
+    public Brand load(int id ) throws SQLException {
+        String query="SELECT * FROM brand WHERE id=?";
+        PreparedStatement preparedStatement = connection.prepareStatement(query);
+        preparedStatement.setInt(1,id);
+        ResultSet resultSet=preparedStatement.executeQuery();
+
+        if (resultSet.next()){
+            Brand brand = new Brand();
+            brand.setId(resultSet.getInt("id"));
+            brand.setName(resultSet.getString("name"));
+            brand.setWebsite(resultSet.getString("website"));
+            brand.setDescription(resultSet.getString("description"));
+            return brand;
+        }return null;
     }
 
     public void printResult(int result) {

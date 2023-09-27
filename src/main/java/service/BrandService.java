@@ -26,7 +26,7 @@ public class BrandService {
             if (brandRepo.isNameExists(name)) {
                 System.out.println("!Brand name already exists");
             } else {
-                repeat=false;
+                repeat = false;
                 brandRepo.save(new Brand(name, website, description));
             }
         }
@@ -67,6 +67,9 @@ public class BrandService {
         brandRepo.delete(id);
     }
 
+    public Brand load(int id) throws SQLException {
+       return brandRepo.load(id);
+    }
     public void show() throws SQLException {
         System.out.println("\t\t**BRANDS**");
         brandRepo.showBrands();

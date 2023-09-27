@@ -26,7 +26,7 @@ CREATE TABLE IF NOT EXISTS product
 (
     id          serial primary key,
     name        varchar(50) not null,
-    create_date date        not null,
+    create_date varchar(50) not null,
     category_id int references category (id),
     brand_id    int references brand (id)
 );

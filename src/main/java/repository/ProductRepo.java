@@ -63,11 +63,24 @@ public class ProductRepo {
         printResult(result);
     }
 
-
     public void delete(int id) throws SQLException {
         String query="delete from product where id=?";
         PreparedStatement preparedStatement = connection.prepareStatement(query);
         preparedStatement.setInt(1,id);
+        int result=preparedStatement.executeUpdate();
+        printResult(result);
+    }
+    public void deleteByCategoryID(int categoryID) throws SQLException {
+        String query="delete from product where category_id=?";
+        PreparedStatement preparedStatement = connection.prepareStatement(query);
+        preparedStatement.setInt(1,categoryID);
+        int result=preparedStatement.executeUpdate();
+        printResult(result);
+    }
+    public void deleteByBrandID(int brandID) throws SQLException {
+        String query="delete from product where brand_id=?";
+        PreparedStatement preparedStatement = connection.prepareStatement(query);
+        preparedStatement.setInt(1,brandID);
         int result=preparedStatement.executeUpdate();
         printResult(result);
     }

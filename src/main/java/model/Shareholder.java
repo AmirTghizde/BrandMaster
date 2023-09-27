@@ -3,16 +3,16 @@ package model;
 public class Shareholder {
     private Integer id;
     private String name;
-    private int phoneNumber;
-    private int nationalCode;
+    private String phoneNumber;
+    private String nationalCode;
      private Brand[] brands;
 
-    public Shareholder(Integer id, String name, int phoneNumber, int nationalCode, Brand[] brands) {
+    public Shareholder(Integer id, String name, String phoneNumber, String nationalCode, Brand[] brands) {
         this(name, phoneNumber, nationalCode, brands);
         this.id = id;
     }
 
-    public Shareholder(String name, int phoneNumber, int nationalCode, Brand[] brands) {
+    public Shareholder(String name, String phoneNumber, String nationalCode, Brand[] brands) {
         this.name = name;
         this.phoneNumber = phoneNumber;
         this.nationalCode = nationalCode;
@@ -38,19 +38,19 @@ public class Shareholder {
         this.name = name;
     }
 
-    public int getPhoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(int phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
-    public int getNationalCode() {
+    public String getNationalCode() {
         return nationalCode;
     }
 
-    public void setNationalCode(int nationalCode) {
+    public void setNationalCode(String nationalCode) {
         this.nationalCode = nationalCode;
     }
 

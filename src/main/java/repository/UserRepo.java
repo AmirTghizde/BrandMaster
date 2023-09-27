@@ -96,20 +96,14 @@ public class UserRepo {
         printResult(result);
     }
 
-    public void delete(String username) throws SQLException {
-        //getting the username as a delete parameter felt more real
-        int id = findIdByUsername(username);
-        if (id != -1) {
+    public void delete(int id) throws SQLException {
+
             String query = "delete from users where id=?";
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setInt(1, id);
             int result = preparedStatement.executeUpdate();
 
             printResult(result);
-        } else {
-            System.out.println("!Username not found");
-        }
-
     }
 
     public boolean isUsernameExists(String username) throws SQLException {

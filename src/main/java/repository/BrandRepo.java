@@ -79,6 +79,20 @@ public class BrandRepo {
         return resultSet.next();
     }
 
+    public void showBrands() throws SQLException {
+        String query = "select * from brand";
+        PreparedStatement preparedStatement = connection.prepareStatement(query);
+        ResultSet resultSet = preparedStatement.executeQuery();
+
+        while (resultSet.next()) {
+            int id = (resultSet.getInt("id"));
+            String name = (resultSet.getString("name"));
+            String website = (resultSet.getString("website"));
+            String description = (resultSet.getString("description"));
+            System.out.println("\t"+id+".\t\t"+name+"\t\t"+website+"\t\t"+description );
+        }
+    }
+
     public void printResult(int result) {
         if (result > 0) {
             System.out.println("+Successful");

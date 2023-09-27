@@ -19,17 +19,15 @@ public class ShareholderRepo {
         preparedStatement.setInt(3, shareholder.getNationalCode());
         int result=preparedStatement.executeUpdate();
         ResultSet resultSet = preparedStatement.getGeneratedKeys();
-        if (result>0){
-            System.out.println("+Successfully added to database");
+
+        printResult(result);
+
             if (resultSet.next()){
                 int autoIncrement = resultSet.getInt("id");
                 shareholder.setId(autoIncrement);
                 saveToShareholder_Brand(shareholder.getId(),brandID);
                 System.out.println("Shareholder id is: "+shareholder.getId());
             }
-        }else {
-            System.out.println("!Failed");
-        }
     }
     public void saveToShareholder_Brand(int shareholderID,int brandID) throws SQLException {
         String query="insert into shareholder_brand(shareholder_id, brand_id) values (?,?)";
@@ -37,11 +35,7 @@ public class ShareholderRepo {
         preparedStatement.setInt(1, shareholderID);
         preparedStatement.setInt(2, brandID);
         int result=preparedStatement.executeUpdate();
-        if (result>0){
-            System.out.println("+Successfully added to database");
-        }else {
-            System.out.println("!Failed");
-        }
+        printResult(result);
     }
     public void editName(int id,String newName) throws SQLException {
         String query="update shareholder set name=? where id=?";
@@ -49,9 +43,7 @@ public class ShareholderRepo {
         preparedStatement.setString(1,newName);
         preparedStatement.setInt(2,id);
         int result=preparedStatement.executeUpdate();
-        if (result>0){
-            System.out.println("+Successfully changed name");
-        }else System.out.println("!failed to change name");
+        printResult(result);
     }
     public void editPhoneNumber(int id,int newPhoneNumber) throws SQLException {
         String query="update shareholder set phonenumber=? where id=?";
@@ -59,9 +51,7 @@ public class ShareholderRepo {
         preparedStatement.setInt(1,newPhoneNumber);
         preparedStatement.setInt(2,id);
         int result=preparedStatement.executeUpdate();
-        if (result>0){
-            System.out.println("+Successfully changed phoneNumber");
-        }else System.out.println("!failed to change phoneNumber");
+        printResult(result);
     }
     public void editNationalCode(int id,int newNationalCode) throws SQLException {
         String query="update shareholder set nationalcode=? where id=?";
@@ -69,9 +59,7 @@ public class ShareholderRepo {
         preparedStatement.setInt(1,newNationalCode);
         preparedStatement.setInt(2,id);
         int result=preparedStatement.executeUpdate();
-        if (result>0){
-            System.out.println("+Successfully changed nationalCode");
-        }else System.out.println("!failed to change nationalCode");
+        printResult(result);
     }
 
     public void delete(int id) throws SQLException {
@@ -81,11 +69,7 @@ public class ShareholderRepo {
         preparedStatement.setInt(1,id);
         int result=preparedStatement.executeUpdate();
 
-        if (result>0){
-            System.out.println("-Successfully deleted");
-        }else {
-            System.out.println("!Failed to delete");
-        }
+        printResult(result);
     }
     public void deleteFromShareholder_Brand(int id) throws SQLException {
         String query="delete  from shareholder_brand where shareholder_id=?";
@@ -101,5 +85,11 @@ public class ShareholderRepo {
         ResultSet resultSet =preparedStatement.executeQuery();
 
         return resultSet.next();
+    }
+
+    public void printResult(int result) {
+        if (result > 0) {
+            System.out.println("+Successful");
+        } else System.out.println("!Failed");
     }
 }

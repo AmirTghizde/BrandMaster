@@ -1,15 +1,14 @@
 package repository;
 
-import connection.JdbcConnection;
 import model.Category;
 
 import java.sql.*;
 
 public class CategoryRepo {
-    JdbcConnection jdbcConnection = new JdbcConnection();
-    Connection connection = jdbcConnection.getConnection();
+    private  final  Connection connection;
 
-    public CategoryRepo() throws SQLException {
+    public CategoryRepo(Connection connection) {
+        this.connection = connection;
     }
 
     public void save(Category category) throws SQLException {

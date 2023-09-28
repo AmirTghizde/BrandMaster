@@ -1,15 +1,14 @@
 package repository;
 
-import connection.JdbcConnection;
 import model.Brand;
 
 import java.sql.*;
 
 public class BrandRepo {
-    JdbcConnection jdbcConnection = new JdbcConnection();
-    Connection connection = jdbcConnection.getConnection();
+    private  final  Connection connection;
 
-    public BrandRepo() throws SQLException {
+    public BrandRepo(Connection connection){
+        this.connection = connection;
     }
 
     public void save(Brand brand) throws SQLException {

@@ -7,10 +7,11 @@ import java.sql.SQLException;
 import java.util.Scanner;
 
 public class BrandService {
-    BrandRepo brandRepo = new BrandRepo();
+    private final BrandRepo brandRepo;
     Scanner sc = new Scanner(System.in);
 
-    public BrandService() throws SQLException {
+    public BrandService(BrandRepo brandRepo){
+        this.brandRepo = brandRepo;
     }
 
     public void add() throws SQLException {

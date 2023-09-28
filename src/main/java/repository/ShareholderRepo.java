@@ -1,16 +1,16 @@
 package repository;
 
-import connection.JdbcConnection;
 import model.Shareholder;
 
 import java.sql.*;
 
 public class ShareholderRepo {
-    JdbcConnection jdbcConnection = new JdbcConnection();
-    Connection connection = jdbcConnection.getConnection();
+    private  final  Connection connection;
 
-    public ShareholderRepo() throws SQLException {
+    public ShareholderRepo(Connection connection) {
+        this.connection = connection;
     }
+
     public void save(Shareholder shareholder,int brandID) throws SQLException {
         String query="insert into shareholder(name, phonenumber, nationalcode) values (?,?,?)";
         PreparedStatement preparedStatement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);

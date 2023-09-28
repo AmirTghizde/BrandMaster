@@ -29,22 +29,10 @@ public class Menu {
             sc.nextLine();
 
             switch (number) {
-                case 1:
-                    repeat = false;
-                    signUp();
-                    break;
-
-                case 2:
-                    repeat = false;
-                    signIn();
-                    break;
-
-                case 3:
-                    repeat = false;
-                    break;
-                default:
-                    System.out.println("Enter a valid number");
-                    break;
+                case 1 -> signUp();
+                case 2 -> signIn();
+                case 3 -> repeat = false;
+                default -> System.out.println("Enter a valid number");
             }
         }
     }
@@ -237,6 +225,7 @@ public class Menu {
             }
         }
     }
+
     public void shareholderMenu() throws SQLException {
         boolean repeat = true;
         while (repeat) {

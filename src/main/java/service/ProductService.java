@@ -80,7 +80,9 @@ public class ProductService {
             productRepo.editBrand_id(id,brandID);
         }else System.out.println("!Brand not found");
     }
-    public void delete(int id) throws SQLException {
+    public void delete() throws SQLException {
+        System.out.print("Enter id: ");
+        int id=sc.nextInt();
         productRepo.delete(id);
     }
 }

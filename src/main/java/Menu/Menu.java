@@ -208,21 +208,28 @@ public class Menu {
             sc.nextLine();
             switch (number) {
                 case 1: {
-                    brandService.show();
                     categoryService.show();
+                    brandService.show();
+                    break;
                 }
                 case 2:
                     productService.add();
+                    break;
                 case 3:
                     productService.delete();
+                    break;
                 case 4:
                     brandService.editName();
+                    break;
                 case 5:
                     brandService.editWebsite();
+                    break;
                 case 6:
                     repeat = false;
+                    break;
                 default:
                     System.out.println("...");
+                    break;
             }
         }
     }

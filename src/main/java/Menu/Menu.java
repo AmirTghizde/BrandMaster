@@ -108,7 +108,7 @@ public class Menu {
                 case 1 -> categoryMenu();
                 case 2 -> brandMenu();
                 case 3 -> productMenu();
-                case 4 -> System.out.println();
+                case 4 -> shareholderMenu();
                 case 5 -> userEditMenu(user);
                 case 6 -> repeat = false;
                 default -> System.out.println("...");
@@ -223,6 +223,32 @@ public class Menu {
                     repeat = false;
                 default:
                     System.out.println("...");
+            }
+        }
+    }
+    public void shareholderMenu() throws SQLException {
+        boolean repeat = true;
+        while (repeat) {
+            System.out.println("================");
+            System.out.println("1- Add shareholder");
+            System.out.println("2- Delete shareholder");
+            System.out.println("3- Delete share");
+            System.out.println("4- Edit name");
+            System.out.println("5- Edit phoneNumber");
+            System.out.println("6- Edit NationalCode");
+            System.out.println("7- Exit");
+            System.out.print("Enter your selection: ");
+            int number = sc.nextInt();
+            sc.nextLine();
+            switch (number) {
+                case 1 -> shareholderService.add();
+                case 2 -> shareholderService.delete();
+                case 3 -> shareholderService.deleteShare();
+                case 4 -> shareholderService.editName();
+                case 5 -> shareholderService.editPhoneNumber();
+                case 6 -> shareholderService.editNationalCode();
+                case 7 -> repeat = false;
+                default -> System.out.println("...");
             }
         }
     }

@@ -30,11 +30,11 @@ public class Menu {
 
             switch (number) {
                 case 1:
-                    repeat=false;
+                    repeat = false;
                     signUp();
 
                 case 2:
-                    repeat=false;
+                    repeat = false;
                     signIn();
 
                 case 3:
@@ -83,6 +83,15 @@ public class Menu {
 
         User user = userService.login(username);
         if (user != null && password.equals(user.getPassword())) {
+            mainMenu(user);
+        } else {
+            System.out.println("\n\n\n\nUsername or password is incorrect");
+        }
+    }
+
+    public void mainMenu(User user) throws SQLException {
+        boolean repeat=true;
+        while (repeat) {
             System.out.println("=== Welcome back " + user.getUsername() + " ===");
             System.out.println("1- Category");
             System.out.println("2- Brand");
@@ -91,10 +100,44 @@ public class Menu {
             System.out.println("5- Edit");
             System.out.println("6- Exit");
             System.out.print("Enter a number: ");
-        } else {
-            System.out.println("\n\n\n\nUsername or password is incorrect");
+            int number = sc.nextInt();
+            sc.nextLine();
+
+
+        switch (number) {
+            case 1 -> System.out.println();
+            case 2 -> System.out.println();
+            case 3 -> System.out.println();
+            case 4 -> System.out.println();
+            case 5 -> userEditMenu(user);
+            case 6 -> repeat=false;
+            default -> System.out.println("...");
         }
+        }
+    }
 
-
+    public void userEditMenu(User user) throws SQLException {
+        boolean repeat = true;
+        while (repeat) {
+            System.out.println("================");
+            System.out.println("1- Edit name");
+            System.out.println("2- Edit userName");
+            System.out.println("3- Edit Email");
+            System.out.println("4- Edit Password");
+            System.out.println("5- Delete Account");
+            System.out.println("6- Exit");
+            System.out.print("Enter your selection: ");
+            int number = sc.nextInt();
+            sc.nextLine();
+            switch (number) {
+                case 1 -> userService.changeName(user.getId());
+                case 2 -> userService.changeUsername();
+                case 3 -> userService.changePassword(user.getId());
+                case 4 -> userService.changeEmail();
+                case 5 -> userService.deleteAccount(user.getId());
+                case 6 -> repeat = false;
+                default -> System.out.println("...");
+            }
+        }
     }
 }

@@ -54,8 +54,4 @@ public class ApplicationContext {
     public static UserService getUserService(){
         return USER_SERVICE;
     }
-
-
-
-
 }

@@ -32,15 +32,19 @@ public class Menu {
                 case 1:
                     repeat = false;
                     signUp();
+                    break;
 
                 case 2:
                     repeat = false;
                     signIn();
+                    break;
 
                 case 3:
                     repeat = false;
+                    break;
                 default:
                     System.out.println("Enter a valid number");
+                    break;
             }
         }
     }

@@ -149,7 +149,7 @@ public class UserRepo {
     }
     public void printResult(int result) {
         if (result > 0) {
-            System.out.println("+Successful");
-        } else System.out.println("!Failed");
+            System.out.println("\n\n\n\n\n\n\n\n+Successful");
+        } else System.out.println("\n\n\n\n\n\n\n\n!Failed");
     }
 }

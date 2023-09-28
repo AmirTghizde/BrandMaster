@@ -15,45 +15,24 @@ public class UserService {
         this.userRepo = userRepo;
     }
 
-    public void register() throws SQLException {
-        boolean repeat = true;
-        while (repeat) {
-            System.out.print("Please enter your name: ");
-            String name = sc.nextLine();
-            System.out.print("Please enter your username: ");
-            String username = sc.nextLine();
-            System.out.print("please enter your email: ");
-            String email = sc.nextLine();
-            System.out.print("please enter your password: ");
-            String password = sc.nextLine();
-
-            if (userRepo.isUsernameExists(username)) {
-                System.out.println("!Username already exists");
-            } else if (userRepo.isEmailExists(email)) {
-                System.out.println("!Email already exists");
+    public boolean register(User user) throws SQLException {
+            if (userRepo.isUsernameExists(user.getUsername())) {
+                System.out.println("\n\n\n\n\n\n\n\n!Username already exists");
+                return false;
+            } else if (userRepo.isEmailExists(user.getEmail())) {
+                System.out.println("\n\n\n\n\n\n\n\n!Email already exists");
+                return false;
             } else {
-                repeat = false;
-                User user = new User();
-                user.setName(name);
-                user.setUsername(username);
-                user.setEmail(email);
-                user.setPassword(password);
-
                 userRepo.save(user);
+                return true;
             }
-        }
     }
 
-    public void login() throws SQLException {
-        System.out.print("Enter your username: ");
-        String username = sc.nextLine();
-        System.out.print("Enter your password: ");
-        String password = sc.nextLine();
+
+    public User login(String username) throws SQLException {
 
         User user = userRepo.login(username);
-        if (user != null && user.getPassword().equals(password)) {//if the user is not null and the password is the same...
-            System.out.println("Successfully logged in :D");
-        } else System.out.println("Wrong username or password");
+        return user;
     }
 
     public void changeName() throws SQLException {

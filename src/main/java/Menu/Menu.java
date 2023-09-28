@@ -105,8 +105,8 @@ public class Menu {
 
 
         switch (number) {
-            case 1 -> System.out.println();
-            case 2 -> System.out.println();
+            case 1 -> categoryMenu();
+            case 2 -> brandMenu();
             case 3 -> System.out.println();
             case 4 -> System.out.println();
             case 5 -> userEditMenu(user);
@@ -136,6 +136,57 @@ public class Menu {
                 case 4 -> userService.changeEmail();
                 case 5 -> userService.deleteAccount(user.getId());
                 case 6 -> repeat = false;
+                default -> System.out.println("...");
+            }
+        }
+    }
+
+    public void categoryMenu() throws SQLException {
+        boolean repeat = true;
+        while (repeat) {
+            System.out.println("================");
+            System.out.println("1- Show categories");
+            System.out.println("2- Add category");
+            System.out.println("3- delete category");
+            System.out.println("4- Edit name");
+            System.out.println("5- Edit description");
+            System.out.println("6- Exit");
+            System.out.print("Enter your selection: ");
+            int number = sc.nextInt();
+            sc.nextLine();
+            switch (number) {
+                case 1 -> categoryService.show();
+                case 2 -> categoryService.add();
+                case 3 -> categoryService.delete();
+                case 4 -> categoryService.editName();
+                case 5 -> categoryService.editDescription();
+                case 6 -> repeat = false;
+                default -> System.out.println("...");
+            }
+        }
+    }
+    public void brandMenu() throws SQLException {
+        boolean repeat = true;
+        while (repeat) {
+            System.out.println("================");
+            System.out.println("1- Show brands");
+            System.out.println("2- Add brand");
+            System.out.println("3- delete brand");
+            System.out.println("4- Edit name");
+            System.out.println("5- Edit website");
+            System.out.println("6- Edit description");
+            System.out.println("7- Exit");
+            System.out.print("Enter your selection: ");
+            int number = sc.nextInt();
+            sc.nextLine();
+            switch (number) {
+                case 1 -> brandService.show();
+                case 2 -> brandService.add();
+                case 3 -> brandService.delete();
+                case 4 -> brandService.editName();
+                case 5 -> brandService.editWebsite();
+                case 6 -> brandService.editDescription();
+                case 7 -> repeat = false;
                 default -> System.out.println("...");
             }
         }

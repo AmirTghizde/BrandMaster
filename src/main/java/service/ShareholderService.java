@@ -8,11 +8,14 @@ import java.sql.SQLException;
 import java.util.Scanner;
 
 public class ShareholderService {
-    ShareholderRepo shareholderRepo = new ShareholderRepo();
-    BrandService brandService = new BrandService();
+    private final ShareholderRepo shareholderRepo;
+    private final BrandService brandService;
+
     Scanner sc = new Scanner(System.in);
 
-    public ShareholderService() throws SQLException {
+    public ShareholderService(ShareholderRepo shareholderRepo, BrandService brandService){
+        this.shareholderRepo = shareholderRepo;
+        this.brandService = brandService;
     }
 
     public void add() throws SQLException {

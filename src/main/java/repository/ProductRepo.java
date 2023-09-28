@@ -1,16 +1,15 @@
 package repository;
 
-import connection.JdbcConnection;
 import model.Product;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 public class ProductRepo {
-    JdbcConnection jdbcConnection = new JdbcConnection();
-    Connection connection = jdbcConnection.getConnection();
+    private  final  Connection connection;
 
-    public ProductRepo() throws SQLException {
+    public ProductRepo(Connection connection) {
+        this.connection = connection;
     }
 
     public void save(Product product) throws SQLException {

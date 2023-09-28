@@ -7,10 +7,11 @@ import java.sql.SQLException;
 import java.util.Scanner;
 
 public class CategoryService {
-    CategoryRepo categoryRepo = new CategoryRepo();
+    private final CategoryRepo categoryRepo;
     Scanner sc = new Scanner(System.in);
 
-    public CategoryService() throws SQLException {
+    public CategoryService(CategoryRepo categoryRepo){
+        this.categoryRepo = categoryRepo;
     }
 
     public void add() throws SQLException {

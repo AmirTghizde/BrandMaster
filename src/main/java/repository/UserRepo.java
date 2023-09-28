@@ -1,16 +1,14 @@
 package repository;
 
-import connection.JdbcConnection;
 import model.User;
 
 import java.sql.*;
 
 public class UserRepo {
-    JdbcConnection jdbcConnection = new JdbcConnection();
-    Connection connection = jdbcConnection.getConnection();
+    private  final  Connection connection;
 
-    public UserRepo() throws SQLException {
-
+    public UserRepo(Connection connection) {
+        this.connection = connection;
     }
 
 

@@ -1,8 +1,6 @@
 package service;
 
 import model.Product;
-import repository.BrandRepo;
-import repository.CategoryRepo;
 import repository.ProductRepo;
 
 import java.sql.SQLException;
@@ -10,12 +8,17 @@ import java.util.Scanner;
 
 public class ProductService {
     //TODO don't forget apllication context and validation and menu :P
-    ProductRepo productRepo = new ProductRepo();
-    CategoryService categoryService = new CategoryService();
-    BrandService brandService = new BrandService();
+    private final ProductRepo productRepo;
+    private final CategoryService categoryService;
+    private final  BrandService brandService;
+
+
     Scanner sc = new Scanner(System.in);
 
-    public ProductService() throws SQLException {
+    public ProductService(ProductRepo productRepo, CategoryService categoryService, BrandService brandService)  {
+        this.productRepo = productRepo;
+        this.categoryService = categoryService;
+        this.brandService = brandService;
     }
     public void add() throws SQLException {
         System.out.print("Enter Product name: ");

@@ -35,15 +35,11 @@ public class UserService {
         return user;
     }
 
-    public void changeName() throws SQLException {
-        //TODO change this part and make it dynamic so the user only sends the new name
-        System.out.print("Enter your id: ");//temporary
-        int id = sc.nextInt();
-        sc.nextLine();
+    public void changeName(int id) throws SQLException {
         System.out.print("Enter the new name: ");
         String name = sc.nextLine();
 
-        userRepo.editName(id, name);
+        userRepo.editName(id,name);
     }
 
     public void changeUsername() throws SQLException {
@@ -68,11 +64,8 @@ public class UserService {
         } else userRepo.editEmail(email, newEmail);
     }
 
-    public void changePassword() throws SQLException {
-        //TODO change this part and make it dynamic so the user only sends the new password
+    public void changePassword(int id) throws SQLException {
         boolean repeat = true;
-        System.out.print("Enter your id: ");//temporary
-        int id = sc.nextInt();
         sc.nextLine();
         while (repeat) {
             System.out.print("Enter the new password: ");
@@ -85,11 +78,7 @@ public class UserService {
             } else System.out.println("!Repeated password doesn't match");
         }
     }
-    public void deleteAccount() throws SQLException {
-        //TODO change this part and make it dynamic so the user only hits delete
-        System.out.print("Enter your id: ");//temporary
-        int id = sc.nextInt();
-        sc.nextLine();
+    public void deleteAccount(int id) throws SQLException {
         userRepo.delete(id);
     }
 }

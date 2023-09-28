@@ -90,7 +90,7 @@ public class Menu {
     }
 
     public void mainMenu(User user) throws SQLException {
-        boolean repeat=true;
+        boolean repeat = true;
         while (repeat) {
             System.out.println("=== Welcome back " + user.getUsername() + " ===");
             System.out.println("1- Category");
@@ -104,15 +104,15 @@ public class Menu {
             sc.nextLine();
 
 
-        switch (number) {
-            case 1 -> categoryMenu();
-            case 2 -> brandMenu();
-            case 3 -> System.out.println();
-            case 4 -> System.out.println();
-            case 5 -> userEditMenu(user);
-            case 6 -> repeat=false;
-            default -> System.out.println("...");
-        }
+            switch (number) {
+                case 1 -> categoryMenu();
+                case 2 -> brandMenu();
+                case 3 -> productMenu();
+                case 4 -> System.out.println();
+                case 5 -> userEditMenu(user);
+                case 6 -> repeat = false;
+                default -> System.out.println("...");
+            }
         }
     }
 
@@ -165,6 +165,7 @@ public class Menu {
             }
         }
     }
+
     public void brandMenu() throws SQLException {
         boolean repeat = true;
         while (repeat) {
@@ -188,6 +189,40 @@ public class Menu {
                 case 6 -> brandService.editDescription();
                 case 7 -> repeat = false;
                 default -> System.out.println("...");
+            }
+        }
+    }
+
+    public void productMenu() throws SQLException {
+        boolean repeat = true;
+        while (repeat) {
+            System.out.println("================");
+            System.out.println("1- Show products and brands");
+            System.out.println("2- Add product");
+            System.out.println("3- delete product");
+            System.out.println("4- Edit name");
+            System.out.println("5- Edit creationDate");
+            System.out.println("6- Exit");
+            System.out.print("Enter your selection: ");
+            int number = sc.nextInt();
+            sc.nextLine();
+            switch (number) {
+                case 1: {
+                    brandService.show();
+                    categoryService.show();
+                }
+                case 2:
+                    productService.add();
+                case 3:
+                    productService.delete();
+                case 4:
+                    brandService.editName();
+                case 5:
+                    brandService.editWebsite();
+                case 6:
+                    repeat = false;
+                default:
+                    System.out.println("...");
             }
         }
     }
